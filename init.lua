@@ -24,7 +24,9 @@ end
 
 function teleScope_config()
 	local telescope = require('telescope')
+	telescope.setup()
 
+	require('telescope').load_extension('fzf')
 	vim.api.nvim_set_keymap('','<C-p>',':Telescope find_files<CR>',{silent=true})
 end
 
@@ -42,7 +44,11 @@ function main()
 		}
 		use 'shaunsingh/seoul256.nvim'
 		use 'nvim-lualine/lualine.nvim'
-
+		use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+		use {
+        		'nvim-treesitter/nvim-treesitter',
+		        run = ':TSUpdate'
+    }
 	end)
 	
 	NVim_config()
