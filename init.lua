@@ -13,7 +13,8 @@ end
 
 
 function Setup_Theme()
-	vim.cmd("colorscheme nightfox")
+	vim.cmd([[colorscheme nightfox]])
+	require('lualine').setup()
 end
 
 
@@ -39,6 +40,9 @@ function main()
 		  'nvim-telescope/telescope.nvim',
 		  requires = { {'nvim-lua/plenary.nvim'} }
 		}
+		use 'shaunsingh/seoul256.nvim'
+		use 'nvim-lualine/lualine.nvim'
+
 	end)
 	
 	NVim_config()
