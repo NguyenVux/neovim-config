@@ -1,0 +1,51 @@
+function Setup_NVimTree()
+	local	nvim_tree = require('nvim-tree')
+	nvim_tree.setup{
+		update_cwd = true,
+		filesystem_watchers = {
+		        enable = false,
+        		interval = 100,
+		}
+	}
+	vim.api.nvim_set_keymap('','<C-b>',':NvimTreeToggle <CR>',{silent=true})
+end
+
+
+
+function Setup_Theme()
+	vim.cmd("colorscheme nightfox")
+end
+
+
+function NVim_config()
+	vim.o.relativenumber=true
+end
+
+function teleScope_config()
+	local telescope = require('telescope')
+
+	vim.api.nvim_set_keymap('','<C-p>',':Telescope find_files<CR>',{silent=true})
+end
+
+function main()	
+	require('packer').startup(function()
+	
+		use 'wbthomason/packer.nvim'
+		use 'kyazdani42/nvim-web-devicons'
+		use 'romgrk/barbar.nvim'
+		use 'kyazdani42/nvim-tree.lua'
+		use "EdenEast/nightfox.nvim"
+		use {
+		  'nvim-telescope/telescope.nvim',
+		  requires = { {'nvim-lua/plenary.nvim'} }
+		}
+	end)
+	
+	NVim_config()
+	Setup_NVimTree()
+	Setup_Theme()
+	teleScope_config()
+
+end
+
+main()
