@@ -5,39 +5,39 @@ local conf = require("telescope.config").values
 local drop_down_theme = require("telescope.themes").get_dropdown{}
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
-local themes = require('themes')
 
 
-function ColorChange()                                                                                                                              
+function runCommand()
   local selected =  action_state.get_selected_entry()
-  local cmd = 'colorscheme ' .. selected[1]
+  local cmd = selected[1]
   vim.cmd(cmd)
-  return cmd
 end
 
-function color_picker()
+
+function OpenCommandPallete(commands)
+  local themes = require('themes')
+
   local finder = finders.new_table {
-    results = themes.GetThemesArray()
+    results = commands
   }
 
-  pickers.new(drop_down_theme, {
-    prompt_title = "Select Themes",
-    sorter = conf.generic_sorter(opts),
+  local opts = {
+    prompt_title = "Commands",
+    sorter = conf.generic_sorter({}),
     finder = finder,
     attach_mappings = function(prompt_bufnr, map)
       actions.select_default:replace(function()
         actions.close(prompt_bufnr)
-        local cmd = ColorChange()
-        themes.SaveThemes(cmd)
+        runCommand()
       end)
       return true
     end
-  }):find()
+  }
+
+  pickers.new(drop_down_theme,opts):find()
 end
 
 
-
-
-
-local Command = "SelectThemes"
-require'custom_commands'.RegisterCommand(Command,color_picker)
+return {
+  OpenCommandPallete = OpenCommandPallete
+}
