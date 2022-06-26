@@ -40,6 +40,7 @@ function teleScope_config()
 		}
 	})
 
+	vim.api.nvim_set_keymap('','<CS-f>',':NvimTreeToggle <CR>',{silent=true})
 	require('telescope').load_extension('fzf')
 	vim.api.nvim_set_keymap('','<C-p>',':Telescope find_files<CR>',{silent=true})
 end
@@ -94,4 +95,5 @@ function main()
 
 end
 
+require("color_picker")
 main()
