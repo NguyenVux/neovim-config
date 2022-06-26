@@ -1,3 +1,5 @@
 *
+!lua\
+!lua\*
 !init.lua
 !ginit.vim
