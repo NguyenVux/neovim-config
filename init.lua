@@ -50,6 +50,7 @@ function main()
 	lsp_config()
 	require('Comment').setup()
 	vim.opt.shell = "pwsh.exe -NoLogo"
+	vim.opt.shellcmdflag="-c"
 	
 
 end
