@@ -7,7 +7,9 @@ local M = {
 
 M.SaveThemes = function(cmd)
 	local path = vim.fn.stdpath('config')
-	vim.cmd('!echo vim.cmd(\'' .. cmd .. '\') > '..path..'/lua/themes/settings.lua')
+	local file = io.open(path..'lua/themes/settings.lua','r')
+	file:write('vim.cmd \''..cmd..'\'')
+	file:close()
 end
 
 M.GetThemesArray = function()
@@ -19,7 +21,7 @@ M.GetThemesArray = function()
 	return arr
 end
 
-local status, lfs = pcall(require, "settings")
+local status, lfs = pcall(require, "themes.settings")
 if(not status) then
 	vim.cmd('colorscheme seoul256')
 end

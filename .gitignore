@@ -1,5 +1,6 @@
 *
-!lua\
-!lua\*
+settings.lua
+!/lua/
+!/lua/*
 !init.lua
 !ginit.vim

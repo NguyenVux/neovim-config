@@ -11,11 +11,11 @@ function Setup_NVimTree()
 		}
 	}
 	--vim.api.nvim_set_keymap('','<C-b>',':NvimTreeToggle <CR>',{silent=true})
-	vim.keymap.set('','<C-b>',
+	vim.keymap.set('','<c-b>',
 		function()
 			nvim_tree.toggle(false,true)
 		end,
-		{silent = true,desc= "Open Nvim-tree"}
+		{silent = true,desc= "open nvim-tree"}
 	)
 end
 
@@ -31,12 +31,7 @@ function NVim_config()
 end
 
 function lsp_config()
-	local lsp_config = require('lspconfig')
-	local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-	lsp_config.clangd.setup({
-    		capabilities = capabilities
-	})
-end
+	end
 
 function main()	
 	require('Plugins')
@@ -44,13 +39,12 @@ function main()
 	require('custom_commands')
 	require('color_picker')
 	require('configs')
+	require('lsp')
 	NVim_config()
 	Setup_NVimTree()
 	Setup_Theme()
 	lsp_config()
 	require('Comment').setup()
-	vim.opt.shell = "pwsh.exe -NoLogo"
-	vim.opt.shellcmdflag="-c"
 	
 
 end
