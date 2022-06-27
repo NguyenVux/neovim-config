@@ -49,6 +49,8 @@ function main()
 	Setup_Theme()
 	lsp_config()
 	require('Comment').setup()
+	vim.opt.shell = "pwsh.exe -NoLogo"
+	
 
 end
 
