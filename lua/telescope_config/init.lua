@@ -14,9 +14,13 @@ telescope.setup({
 	pickers = {
 		find_files = {
 			theme = "dropdown",
-		}	
-	},
-	previewers = nil
+			previewer = false,
+		},
+		commands= {
+			theme = 'dropdown',
+			previewer = false,
+		}
+	}
 })
 
 require('telescope').load_extension('fzf')
@@ -30,3 +34,5 @@ vim.keymap.set('','<C-S-f>',
 		require('telescope.builtin').live_grep,
 		{silent = true,desc= "Open telescope find files"}
 )
+
+vim.keymap.set('','<C-S-p>',require'telescope.builtin'.commands,{desc='Open Command Pallete'})

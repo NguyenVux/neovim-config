@@ -8,7 +8,7 @@ local action_state = require "telescope.actions.state"
 local themes = require('themes')
 
 
-function ColorChange()                                                                                                                              
+function ColorChange()
   local selected =  action_state.get_selected_entry()
   local cmd = 'colorscheme ' .. selected[1]
   vim.cmd(cmd)

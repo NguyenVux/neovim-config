@@ -14,12 +14,5 @@ function()
 end,{})
 
 
-vim.keymap.set('','<C-S-p>',
-		function()
-			require'command_pallete'.OpenCommandPallete(CommandsMap)
-		end,
-		{silent = true,desc= "Open Command Pallete"}
-	)
-
 return M
 

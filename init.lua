@@ -45,8 +45,6 @@ function main()
 	Setup_Theme()
 	lsp_config()
 	require('Comment').setup()
-	
-
 end
 
 main()

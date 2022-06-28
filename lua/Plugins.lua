@@ -29,4 +29,5 @@ require('packer').startup(function()
 	use 'hrsh7th/nvim-cmp'
 	use {'dstein64/vim-startuptime'}
 	use "williamboman/nvim-lsp-installer"
+	use 'rcarriga/nvim-notify'
 end)
