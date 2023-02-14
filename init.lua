@@ -2,9 +2,9 @@ local ensure_packer = function()
 	local fn = vim.fn
 	local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 	if fn.empty(fn.glob(install_path)) > 0 then
-	  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-	  vim.cmd [[packadd packer.nvim]]
-	  return true
+	 	fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+	 	vim.cmd [[packadd packer.nvim]]
+	 	return true
 	end
 	return false
       end
@@ -27,21 +27,34 @@ packer.startup(function(use)
 	use {
 		'nvim-tree/nvim-tree.lua',
 		requires = {
-		  'nvim-tree/nvim-web-devicons', -- optional, for file icons
+		 	'nvim-tree/nvim-web-devicons', -- optional, for file icons
 		}
 	}
-	use 'marko-cerovac/material.nvim'
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = function()
-		    local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-		    ts_update()
+		 	local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+		 	ts_update()
 		end,
 	}
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
+
+	use 'Raimondi/delimitMate'
+	use 'Mofiqul/vscode.nvim'
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	}
+	use {'akinsho/bufferline.nvim' , requires = 'nvim-tree/nvim-web-devicons'}
+	use "lukas-reineke/indent-blankline.nvim"
+	use {
+		'lewis6991/gitsigns.nvim',
+		tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+	}
+	use 'neovim/nvim-lspconfig'
 	if packer_bootstrap then
 		require('packer').sync()
 	end
