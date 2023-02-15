@@ -52,9 +52,22 @@ packer.startup(function(use)
 	use "lukas-reineke/indent-blankline.nvim"
 	use {
 		'lewis6991/gitsigns.nvim',
-		tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
 	}
 	use 'neovim/nvim-lspconfig'
+	use { "sitiom/nvim-numbertoggle" }
+	use {"akinsho/toggleterm.nvim"}
+	use 'ggandor/lightspeed.nvim'
+	use {'hrsh7th/nvim-cmp', 
+		requires = {
+			"quangnguyen30192/cmp-nvim-ultisnips",
+			"amarakon/nvim-cmp-buffer-lines",
+			'hrsh7th/cmp-path',
+			'SirVer/ultisnips',
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-cmdline"
+		}
+	}
 	if packer_bootstrap then
 		require('packer').sync()
 	end

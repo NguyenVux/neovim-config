@@ -36,7 +36,16 @@ local lsp_flags = {
 }
 
 local util = require'lspconfig.util'
-require'lspconfig'.clangd.setup{
+local lspconfig = require('lspconfig')
+
+
+local lsp_defaults = lspconfig.util.default_config
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+  'force',
+  lsp_defaults.capabilities,
+  require('cmp_nvim_lsp').default_capabilities()
+)
+lspconfig.clangd.setup{
 	on_attach = on_attach,
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 	root_dir = util.root_pattern(
@@ -45,3 +54,36 @@ require'lspconfig'.clangd.setup{
 		'.git'
 	  )
 }
+
+local cmp = require('cmp')
+
+cmp.setup({
+	snippet = {
+		expand = function (args)
+			vim.fn["UltiSnips#Anon"](args.body)
+		end
+	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered()
+	},
+	mapping = cmp.mapping.preset.insert({
+      			['<C-b>'] = cmp.mapping.scroll_docs(-4),
+			['<C-f>'] = cmp.mapping.scroll_docs(4),
+			['<C-Space>'] = cmp.mapping.complete(),
+			['<C-e>'] = cmp.mapping.abort(),
+			['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+	sources = cmp.config.sources({
+		{ name = 'nvim_lsp' },
+		 -- { name = 'luasnip' }, -- For luasnip users.
+		{ name = 'ultisnips' }, -- For ultisnips users.
+		 -- { name = 'snippy' }, -- For snippy users.
+		}, {
+		{ name = 'buffer' },
+    })
+
+})
+
+
+
