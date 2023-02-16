@@ -11,10 +11,9 @@ if vim.fn.executable('pwsh') == 1 then
 	vim.opt.shellxquote = ''
 end
 require('toggleterm').setup(
-{
+{})
 
-open_mapping = [[<S-t>]]
-})
+vim.keymap.set('n','<S-t>', [[Toggleterm]])
 
 require'lightspeed'.setup {
   ignore_case = false,
